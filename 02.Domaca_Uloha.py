@@ -10,13 +10,31 @@ vstup3 = [10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,200]
 vystup3 = 210
 
 def kontrola(vstup, vystup):
+    pocet1 = 0
     #print(vstup_, vystup)
     for i in range(len(vstup)):
         for j in range(i+1, len(vstup)):
-            print(vstup[i], vstup[j], vstup[i]+vstup[j], vystup)
+            #print(vstup[i], vstup[j], vstup[i]+vstup[j], vystup)
+            pocet1+=1
             if vstup[i] + vstup[j] == vystup:
+                print(pocet1)
                 return "áno"
+    print(pocet1)
     return "nie"
-    
 
-print(kontrola(vstup2, vystup2))
+def kontrolaGPT(vstup, vystup):
+    pocet2 = 0
+    seen = set()
+    for num in vstup:
+        complement = vystup - num
+        pocet2+=1
+        if complement in seen or num == vystup:
+            print(pocet2)
+            return "áno"
+        seen.add(num)
+    print(pocet2)
+    return "nie"
+
+
+print(kontrola(vstup3, vystup3))
+print(kontrolaGPT(vstup3, vystup3))
